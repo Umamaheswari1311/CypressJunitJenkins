@@ -7,9 +7,9 @@
     "electron-test": "cypress run",
     "post-test": "jrm results/combined-report.xml \"results/*.xml\"",
     "prereport": "npm run delete:reports",
-    "script-electron": "npm run electron-test || npm run postelectron-test",
+    "script-electron": "npm run electron-test || npm run post-test",
     "chrome-test": "cypress run --browser chrome --headless",
-    "script-chrome": "npm run chrome-test || npm run postchrome-test",
+    "script-chrome": "npm run chrome-test || npm run post-test",
     "firefox-test": "cypress run --browser firefox --headless",   
     "script-firefox": "npm run firefox-test || npm run post-test"
   },
