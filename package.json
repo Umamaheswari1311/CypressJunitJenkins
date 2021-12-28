@@ -1,0 +1,24 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "cypress",
+  "main": "index.js",
+  "scripts": {
+    "electron-test": "cypress run",
+    "post-test": "jrm results/combined-report.xml \"results/*.xml\"",
+    "prereport": "npm run delete:reports",
+    "script-electron": "npm run electron-test || npm run postelectron-test",
+    "chrome-test": "cypress run --browser chrome --headless",
+    "script-chrome": "npm run chrome-test || npm run postchrome-test",
+    "firefox-test": "cypress run --browser firefox --headless",   
+    "script-firefox": "npm run firefox-test || npm run post-test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.1.1",
+    "cypress-iframe": "^1.0.1",
+    "cypress-sql-server": "^1.0.0",
+    "junit-report-merger": "^3.0.2"
+  }
+}
