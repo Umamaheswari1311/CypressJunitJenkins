@@ -4,21 +4,28 @@
   "description": "cypress",
   "main": "index.js",
   "scripts": {
+    "clean:reports": "(if exist results (rmdir /Q /S results)) && mkdir results",
+    "pretest": "npm run clean:reports",
     "electron-test": "cypress run",
-    "post-test": "jrm results/combined-report.xml \"results/*.xml\"",
-    "prereport": "npm run delete:reports",
-    "script-electron": "npm run electron-test || npm run post-test",
     "chrome-test": "cypress run --browser chrome --headless",
-    "script-chrome": "npm run chrome-test || npm run post-test",
-    "firefox-test": "cypress run --browser firefox --headless",   
-    "script-firefox": "npm run firefox-test || npm run post-test"
+    "firefox-test": "cypress run --browser firefox --headless",
+    "Combined-xml": "jrm results/combined-report.xml \"results/*.xml\"",
+    "genrate-html": "xunit-viewer --results=results/combined-report.xml --output=results/index.html",
+    "posttest": "npm run Combined-xml && npm run genrate-html",
+    "script-electron": "npm run pretest && npm run electron-test && npm run posttest || npm run posttest",
+    "script-chrome": "npm run pretest && npm run chrome-test && npm run posttest || npm run posttest",
+    "script-firefox": "npm run pretest && npm run firefox-test && npm run posttest || npm run posttest"
+
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cypress-sql-server": "^1.0.0",
     "cypress": "^9.1.1",
     "cypress-iframe": "^1.0.1",
-    "cypress-sql-server": "^1.0.0",
-    "junit-report-merger": "^3.0.2"
+    "junit-report-merger": "^3.0.2",
+    "xunit-viewer": "^7.1.5"
   }
+
+  
 }

@@ -16,8 +16,10 @@ const sqlServer = require('cypress-sql-server');
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
-const dbConfig = require('../../cypress.json');
-module.exports = (on, config) => {
+const dbConfig = require('../../cypress.json'); 
+module.exports = (on) => {  
   tasks = sqlServer.loadDBPlugin(dbConfig.db);
   on('task', tasks);
 }
+
+
