@@ -5,7 +5,7 @@
          },
   "chromeWebSecurity": false,
   "projectId": "bzxnvd",
-   "video":false,
+   "video":true,
    "screenshotOnRunFailure":true,
    
   "db": {

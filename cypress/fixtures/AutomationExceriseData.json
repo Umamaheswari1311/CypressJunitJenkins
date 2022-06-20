@@ -1,0 +1,23 @@
+{
+    "url":"https://automationexercise.com",
+    "signup": "New User Signup!",
+    "uname":"testuser",
+    "firstname":"uma",
+    "email":"uma@gmail.com",
+    "invalid_email":"invalid@gmail.com",
+    "invalid_error":"Your email or password is incorrect!",
+    "lname":"k",
+    "addr":"44 East",
+    "state":"TN",
+    "city":"chennai",
+    "pwd":"test123",
+    "day":13,
+    "month":11,
+    "year":"1989",
+    "zipcode":234455,
+    "mob":9121312345,
+    "accountCreated":"Account Created!",
+    "Product1":"Green Side Placket Detail T-Shirt",
+    "Product2":"Fancy Green Top"
+}
+  
