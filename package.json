@@ -20,7 +20,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress-sql-server": "^1.0.0",
     "cypress": "^9.1.1",
     "cypress-iframe": "^1.0.1",
     "junit-report-merger": "^3.0.2",
