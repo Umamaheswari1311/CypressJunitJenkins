@@ -1,25 +1,14 @@
   {
   "defaultCommandTimeout": 6000,
   "env": {
-    "url": "https://demoqa.com"
+    "url": "https://automationexercise.com"
          },
   "chromeWebSecurity": false,
   "projectId": "bzxnvd",
    "video":true,
    "screenshotOnRunFailure":true,
-   
-  "db": {
-    "userName": "umaQA1311",
-    "password": "Sanuma@2017",
-    "server": "uma.database.windows.net",
-    "options": {
-        "database": "dbconnection",
-        "encrypt": true,
-        "rowCollectionOnRequestCompletion" : true
-    }
-    
-    },
-    "reporter": "junit",
+ 
+  "reporter": "junit",
   "reporterOptions": {
     "mochaFile": "results/my-test-output-[hash].xml"
   }

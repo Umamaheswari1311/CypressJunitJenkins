@@ -1,9 +1,9 @@
 {
     "url":"https://automationexercise.com",
     "signup": "New User Signup!",
-    "uname":"testuser",
+    "uname":"umamaheswari",
     "firstname":"uma",
-    "email":"uma@gmail.com",
+    "email":"uma12@gmail.com",
     "invalid_email":"invalid@gmail.com",
     "invalid_error":"Your email or password is incorrect!",
     "lname":"k",
@@ -18,6 +18,12 @@
     "mob":9121312345,
     "accountCreated":"Account Created!",
     "Product1":"Green Side Placket Detail T-Shirt",
-    "Product2":"Fancy Green Top"
+    "Product2":"Fancy Green Top",
+    "cardNumber":6210,
+    "cvc":123,
+    "expire_month":11,
+    "expire_year":2077,
+    "orderplaced_msg":"Order Placed!"
+
 }
   

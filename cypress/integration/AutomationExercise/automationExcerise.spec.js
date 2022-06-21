@@ -1,17 +1,27 @@
 /// <reference types="cypress" />
 
+import card from "../../support/Pages/cart"
+import payment from "../../support/Pages/payment"
 import product from "../../support/Pages/product"
 import signup from "../../support/Pages/Signup"
 const sign=new signup()
-const prod=new product
+const prod=new product()
+const checkout=new card()
+const pay=new payment()
+
+/* Automation Excerise Application TestSuite */
 describe("AutomationExercise",function(){
-    before(function(){
+
+    beforeEach(function(){
         cy.fixture('AutomationExceriseData').then(function(data){
-            this.data=data    
+            this.data=data  
+            cy.visit(Cypress.env("url")+'/login')  
         })
+        
     })
-    xit("RegisterUser",function(){
-        cy.visit(this.data.url+'/login')
+    /* TC001-Register user with Valid Data */
+    it("RegisterUser",function(){ 
+        cy.log(Cypress.currentTest.title)
         sign.getTitle().should('have.text',this.data.signup)
         sign.setUname().type(this.data.uname)
         var mail='uma'+Math.floor((Math.random() * 100) + 1)+'@gmail.com'
@@ -35,17 +45,17 @@ describe("AutomationExercise",function(){
         cy.get('b').should('have.text',this.data.accountCreated)
         sign.coninue_btn().click()
         sign.CheckUserLogin().should('have.text',this.data.uname)
+        
     })
-
-    xit("InvalidLogin",function(){
-       cy.visit(this.data.url+'/login')
+    /* TC002-Login User with incorrect email and password -Error msg [Your email or password is incorrect!] */
+    it("InvalidLogin",function(){
        sign.loginEmail().type(this.data.invalid_email)
        sign.loginPwd().type(this.data.pwd)
        sign.login_btn().click()
        sign.checkInvalidLogin().should('have.text',this.data.invalid_error)
     })
+    /*TC003-Login User before Checkout and Plae the Order sucessfully */
     it("PlaceTheOrder",function(){
-        cy.visit(this.data.url+'/login')
         sign.loginEmail().type(this.data.email)
         sign.loginPwd().type(this.data.pwd)
         sign.login_btn().click()
@@ -61,6 +71,19 @@ describe("AutomationExercise",function(){
         prod.search_icon().click()
         prod.addCart().eq(1).click({ force: true })
         prod.continueShopping().click()
-
+        checkout.cart_btn().click({force: true})
+        checkout.checkProduct(this.data.Product1).should('have.text',this.data.Product1)
+        checkout.checkProduct(this.data.Product2).should('have.text',this.data.Product2)
+        checkout.ProceedCheckout().click({force: true})
+        checkout.comment().type(Math.random().toString(36).slice(2, 7))
+        checkout.ProceedCheckout().click()
+        pay.getNameOnCard().type(this.data.uname)
+        pay.getCardNumber().type(this.data.cardNumber)
+        pay.getCvcNum().type(this.data.cvc)
+        pay.getExpireMonth().type(this.data.expire_month)
+        pay.getExpireYear().type(this.data.expire_year)
+        pay.clickPayAndConfirm().click()
+        pay.getOrderPlacedMsg().should('have.text',this.data.orderplaced_msg)
+        
     })
 })
