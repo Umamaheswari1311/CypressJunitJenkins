@@ -23,43 +23,38 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
+import signup from "../support/Pages/Signup"
 Cypress.Commands.add('login', (email, password) => { 
-     
-       cy.get('#userName').type(email)
-       cy.get('#password').type(password)
-       cy.get('#login').click()
+  const sign=new signup()  
+  sign.loginEmail().type(email)
+  sign.loginPwd().type(password)
+  sign.login_btn().click()
  })
- Cypress.Commands.add('loginjson', (user) => { 
-      cy.get('#userName').type(user.username)
-      cy.get('#password').type(user.password)
-      cy.get('#login').click()
-  })
+ Cypress.Commands.add('register',(uname,pwd,day,month,year,firstname,lname,addr,state,city,zipcode,mob) => { 
+  const sign=new signup()  
+  sign.setUname().type(uname)
+        var mail='uma'+Math.floor((Math.random() * 100) + 1)+'@gmail.com'
+        sign.setEmail().type(mail)
+        sign.doSignup()
+        sign.clickRadioButton(1)
+        sign.setPwd().type(pwd)
+        sign.setDay().select(day).should('have.value',day) 
+        sign.setMonth().select(month).should('have.value',month) 
+        sign.setYear().select(year).should('have.value',year)
+        sign.checkNewsletter().check().should('be.checked').and('have.attr','name','newsletter')
+        sign.checkoffer().check().should('be.checked').and('have.attr','name','optin')
+        sign.setFname().type(firstname)
+        sign.setLname().type(lname)
+        sign.setAddress().type(addr)
+        sign.setState().type(state)
+        sign.setCity().type(city)
+        sign.setZipCode().type(zipcode)
+        sign.setMobileNum().type(mob)
+        sign.clickCreateAccount()
+ })
 
-Cypress.Commands.add('getIframeBody', (frame) => {
-  // get the iframe > document > body
-  // and retry until the body element is not empty
-  return cy
-  .get(frame)
-  .its('0.contentDocument.body').should('not.be.empty')
-  // wraps "body" DOM element to allow
-  // chaining more Cypress commands, like ".find(...)"
-  // https://on.cypress.io/wrap
-  .then(cy.wrap)
-})
-Cypress.Commands.add('findIframeBody', (frame1,frame2) => {
-  // get the iframe > document > body
-  // and retry until the body element is not empty
-  return cy
-  .get(frame1)
-  .its('0.contentDocument.body').should('not.be.empty')
-  // wraps "body" DOM element to allow
-  // chaining more Cypress commands, like ".find(...)"
-  // https://on.cypress.io/wrap
-  .then(cy.wrap).find(frame2)
-  .its('0.contentDocument.body').should('not.be.empty')
-  .then(cy.wrap)
-})
+
+
 
 
 
